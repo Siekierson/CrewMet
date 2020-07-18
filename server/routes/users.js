@@ -16,9 +16,9 @@ router.route('/add').post((req, res) => {
   const {username,password,email} = req.body;
   const isExist=()=>{
     const newUser = new User({
-      username:username,
-      password:password,
-      email:email
+      username,
+      password,
+      email
     });
   
     newUser.save()

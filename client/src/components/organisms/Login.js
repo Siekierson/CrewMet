@@ -3,11 +3,17 @@ import styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import Form from 'components/atoms/Form';
+import {Redirect} from 'react-router-dom';
 const Head = styled.h1`
 font-size:5rem;
 `
+const Valid = styled.h2`
+font-size:2rem;
+color:red;
+`
 const Login = () =>{
     const [inputs,setInputs] = useState({})
+    const [rdr,setRdr]=useState(null)
     const change = (e)=>setInputs({...inputs,
         [e.target.name]:e.target.value
     })
@@ -25,10 +31,12 @@ const Login = () =>{
             const {username,password}=inputs
             await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
              .then(response => response.json())
-            .then(data => console.log(data));
+            .then(data => data?setRdr(true):setRdr(false));
         }}
         >
+            {rdr&&<Redirect to='/home'/>}
             <Head>Log In</Head>
+            {rdr===false&&<Valid>Invalid fields or user is not exist</Valid>}
             <Input name='username' change={change}/>
             <Input name='password' change={change}/>
             <Button type='submit'>Log In</Button>

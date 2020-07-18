@@ -2,25 +2,29 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const exerciseSchema = new Schema({
-    username:{
+const crewSchema = new Schema({
+    crewname:{
         type:String,
         required:true
     },description:{
         type:String,
         required:true
     },
-    duration:{
-        type:Number,
+    password:{
+        type:String,
         required:true
     },
-    date:{
-        type:Date,
+    members:{
+        type:Array,
+        required:true
+    },
+    heads:{
+        type:Array,
         required:true
     }
 },{
     timestamps:true,
 })
 
-const Exercise=mongoose.model('Exercise',exerciseSchema)
-module.exports= Exercise;
+const Crew=mongoose.model('Crew',crewSchema)
+module.exports= Crew;

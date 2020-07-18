@@ -15,9 +15,9 @@ connection.once('open',function(){
     console.log('db connect')
 })
 
-const exercisesRouter = require('./routes/exercises');
+const crewsRouter = require('./routes/crews');
 const usersRouter = require('./routes/users');
 
-app.use('/exercises',exercisesRouter);
+app.use('/crews',crewsRouter);
 app.use('/users',usersRouter)
 app.listen(port,()=>console.log(`Server is listening at http://localhost:${port}`));
