@@ -7,7 +7,7 @@ height: 50vh;
 width:30vw;
 transform:translate(-50%,-50%);
 `
-const Form = ({children,animate,initial,transition}) => (
-<FormIn animate={animate} initial={initial} transition={transition}>{children}</FormIn>
+const Form = ({children,animate,initial,transition,onSubmit}) => (
+<FormIn animate={animate} initial={initial} transition={transition} onSubmit={onSubmit}>{children}</FormIn>
 )
 export default Form;

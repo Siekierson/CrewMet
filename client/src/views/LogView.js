@@ -16,7 +16,7 @@ const LogView = () =>{
        {logReg?(
         <Login
         />):(
-        <Register/>)}
+        <Register toLog={setLogReg}/>)}
        </Wrapper>
   )
 }

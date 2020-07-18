@@ -16,7 +16,7 @@ transition:.5s;
 }
 `
 
-const Input = ({onChange})=>(
-    <InputIn onChange={onChange}/>
+const Input = ({name,change})=>(
+    <InputIn name={name} onChange={change}/>
 )
 export default Input;
