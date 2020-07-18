@@ -1,1 +1,3 @@
-server
+admin
+administrator123
+mongodb+srv://admin:administrator123@cluster0.6oiav.mongodb.net/<dbname>?retryWrites=true&w=majority
