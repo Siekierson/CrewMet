@@ -18,7 +18,7 @@ const Register = ({toLog}) =>{
     })
     return(
         <Form
-        initial={{x:'60%',y:'50%'}}
+        initial={{x:'60%',y:'20%'}}
         animate={{x:'200%'}}
         transition={{
             type: "spring",

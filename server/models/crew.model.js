@@ -21,6 +21,10 @@ const crewSchema = new Schema({
     heads:{
         type:Array,
         required:true
+    },
+    photo:{
+        type:String,
+        required:false
     }
 },{
     timestamps:true,

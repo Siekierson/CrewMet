@@ -19,6 +19,7 @@ const BtnMotion = styled(motion.div)`
 padding:10px;
 `
 const BasiView = () =>{
+  
     return(
       <>
        <Wrapper>

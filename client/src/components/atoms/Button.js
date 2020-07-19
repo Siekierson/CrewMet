@@ -14,9 +14,9 @@ outline:none;
     background-color:rgba(255,255,255,.2);
 }
 `
-const Button = ({children,onClick}) => {
+const Button = ({children,onClick,type}) => {
     return(
-    <ButtonIn onClick={onClick}>{children}</ButtonIn>
+    <ButtonIn type={type} onClick={onClick}>{children}</ButtonIn>
     )
 }
 export default Button;

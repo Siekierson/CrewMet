@@ -1,9 +1,10 @@
-import React,{useState} from 'react';
+import React,{useContext,useState} from 'react';
 import styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import Form from 'components/atoms/Form';
 import {Redirect} from 'react-router-dom';
+import {LoggedContext} from 'contexts/LoggedContext'
 const Head = styled.h1`
 font-size:5rem;
 `
@@ -12,14 +13,19 @@ font-size:2rem;
 color:red;
 `
 const Login = () =>{
+    const {setLogData} = useContext(LoggedContext)
     const [inputs,setInputs] = useState({})
     const [rdr,setRdr]=useState(null)
     const change = (e)=>setInputs({...inputs,
         [e.target.name]:e.target.value
     })
+    const isLogged = ()=>{
+        setRdr(true)
+        setLogData(inputs)
+    }
     return(
         <Form
-        initial={{x:'150%',y:'60%'}}
+        initial={{x:'150%',y:'20%'}}
         animate={{ x:'70%' }}
         transition={{
           type: "spring",
@@ -31,7 +37,7 @@ const Login = () =>{
             const {username,password}=inputs
             await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
              .then(response => response.json())
-            .then(data => data?setRdr(true):setRdr(false));
+            .then(data => data?isLogged():setRdr(false));
         }}
         >
             {rdr&&<Redirect to='/home'/>}

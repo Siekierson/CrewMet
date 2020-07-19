@@ -9,6 +9,7 @@ const Shadow = styled.div`
 position:absolute;
 height:100vh;
 width:100vw;
+margin-top:-100px;
 background-color: rgba(0,0,0,.8);
 z-index:-1;
 
