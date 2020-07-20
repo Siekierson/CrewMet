@@ -1,5 +1,6 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {BrowserRouter,Switch,Route} from 'react-router-dom';
+import {Redirect} from 'react-router';
 import styled from 'styled-components';
 import Navbar from 'components/organisms/Navbar';
 import FriendVideo from 'components/atoms/FriendVideo';
@@ -13,6 +14,9 @@ margin-top:100px;
 height:calc(100vh - 100px);
 `
 const App = ()=>{
+  // useEffect(()=>{
+  //   if(window.location.pathname!=='/login'||window.location.pathname!=='/')return <Redirect to='/login'/>
+  // })
   return (
     <div className="App">
       <LoggedProvider>

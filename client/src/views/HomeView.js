@@ -1,12 +1,14 @@
 import React from 'react'
 import styled from 'styled-components';
 import ButtonLink from 'components/molecues/ButtonLink';
+import CrewBar from 'components/organisms/CrewBar';
 const Wrapper = styled.div`
-padding:60px;
+
 `
 const HomeView = () =>{
     return(
         <Wrapper>
+            <CrewBar/>
             <ButtonLink path='/create'>Create New Crew</ButtonLink>
         </Wrapper>
     )

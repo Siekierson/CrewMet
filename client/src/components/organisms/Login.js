@@ -19,9 +19,9 @@ const Login = () =>{
     const change = (e)=>setInputs({...inputs,
         [e.target.name]:e.target.value
     })
-    const isLogged = ()=>{
+    const isLogged = (data)=>{
         setRdr(true)
-        setLogData(inputs)
+        setLogData(data)
     }
     return(
         <Form
@@ -37,7 +37,7 @@ const Login = () =>{
             const {username,password}=inputs
             await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
              .then(response => response.json())
-            .then(data => data?isLogged():setRdr(false));
+            .then(data => data?isLogged(data):setRdr(false))
         }}
         >
             {rdr&&<Redirect to='/home'/>}

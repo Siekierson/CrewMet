@@ -23,20 +23,25 @@ const CreateCrewView = () =>{
     const submit=async(e)=>{
         e.preventDefault();
         setInputs({...inputs,
-            members:[logData.username],
-            heads:[logData.username]   
+            members:logData.username,
+            heads:logData.username   
         })
         e.target.reset();
-        setInfo([true,false])
+        setInfo([true,null])
         const fetchFun=async()=>{
             await fetch(`http://localhost:5000/crews/add`,{
             method:"POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(inputs)
-        })
+            })
         setInfo([true,true])
+        await fetch(`http://localhost:5000/users/group`,{
+            method:"PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({login:logData.username,crewname:inputs.crewname})
+        })
         }
-        const exist= fetch(`http://localhost:5000/crews/exist/${inputs.crewname}`)
+        const exist= await fetch(`http://localhost:5000/crews/exist/${inputs.crewname}`).then(res=>res.json())
         exist&&inputs.crewname&&inputs.description&&inputs.password?(fetchFun()):(setInfo([true,false]))
     }
     return(

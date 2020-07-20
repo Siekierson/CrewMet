@@ -8,7 +8,7 @@ router.route('/').get((req, res) => {
 });
 router.route('/auth/:login/:password').get((req, res) => {
   const {login,password}=req.params;
-  User.find({"username":login,"password":password}).then(users => res.json(users.length?true:false))
+  User.find({"username":login,"password":password}).then(users => res.json(users[0]))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
@@ -28,5 +28,16 @@ router.route('/add').post((req, res) => {
 
   User.find({ $or: [ {username:username},{password:password},{email:email} ] }).then(users => users.length?res.json('User arleady exist'):isExist())
 });
-
+router.route('/group').put((req, res) => {
+  const {login,crewname} = req.body;
+  User.collection.updateOne(
+    { username: login },
+    {
+      $push:{
+        "groups": crewname
+      }
+    }
+ )
+ res.json()
+});
 module.exports = router;
