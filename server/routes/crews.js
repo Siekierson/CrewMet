@@ -25,8 +25,16 @@ router.route('/add').post((req, res) => {
 });
 router.route('/exist/:login').get((req, res) => {
   const {login}=req.params
-  Crew.find({"crewname":login})
+  Crew.find({"members":login})
     .then(crews => res.json(crews.length?false:true))
     .catch(err => res.status(400).json('Error: ' + err));
+});
+router.route('/photos').post(async(req, res) => {
+  const {groups}=req.body
+  let photos
+    await Crew.find({"crewname":groups})
+    .then(crews =>photos=crews)
+    .catch(err => res.status(400).json('Error: ' + err));
+    res.json(photos.map(item => item.photo))
 });
 module.exports = router;

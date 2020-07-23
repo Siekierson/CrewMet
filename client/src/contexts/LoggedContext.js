@@ -5,9 +5,9 @@ export const LoggedContext = createContext();
 
 const LoggedProvider = (props) => {
   const [logData,setLogData] = useState(false);
-  
+  const [wait,setWait] = useState(false);
   return (
-    <LoggedContext.Provider value={{logData,setLogData}}>
+    <LoggedContext.Provider value={{logData,setLogData,wait,setWait}}>
       {props.children}
     </LoggedContext.Provider>
   )

@@ -13,7 +13,7 @@ font-size:2rem;
 color:red;
 `
 const Login = () =>{
-    const {setLogData} = useContext(LoggedContext)
+    const {setLogData,setWait} = useContext(LoggedContext)
     const [inputs,setInputs] = useState({})
     const [rdr,setRdr]=useState(null)
     const change = (e)=>setInputs({...inputs,
@@ -34,10 +34,12 @@ const Login = () =>{
         }}
         onSubmit={async(e)=>{
             e.preventDefault()
+            setWait(true)
             const {username,password}=inputs
             await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
              .then(response => response.json())
             .then(data => data?isLogged(data):setRdr(false))
+            .catch(err=>setRdr(false))
         }}
         >
             {rdr&&<Redirect to='/home'/>}
