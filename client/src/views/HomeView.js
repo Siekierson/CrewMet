@@ -1,16 +1,23 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import styled from 'styled-components';
 import ButtonLink from 'components/molecues/ButtonLink';
+import SearchGroup from 'components/molecues/SearchGroup';
 import CrewBar from 'components/organisms/CrewBar';
-const Wrapper = styled.div`
-
-`
+import {LoggedContext} from 'contexts/LoggedContext';
+import DefWrapper from 'components/atoms/DefWrapper';
 const HomeView = () =>{
+    const {setLogData} = useContext(LoggedContext)
+    const logOut = () =>{
+        localStorage.clear();
+        setLogData(false)
+    }
     return(
-        <Wrapper>
+        <DefWrapper>
             <CrewBar/>
             <ButtonLink path='/create'>Create New Crew</ButtonLink>
-        </Wrapper>
+            <ButtonLink onClick={logOut} path='/login'>Log out</ButtonLink>
+            <SearchGroup/>
+        </DefWrapper>
     )
 }
 

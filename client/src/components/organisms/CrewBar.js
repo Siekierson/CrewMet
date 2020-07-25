@@ -3,14 +3,17 @@ import styled from 'styled-components';
 import {LoggedContext} from 'contexts/LoggedContext'
 const Wrapper = styled.div`
 height:150px;
-width:100vw;
+width:100%;
 padding:10px;
 display: flex;
-justify-content:space-around;
+overflow-y: hidden; 
+overflow-x: auto; 
 `
 const Item = styled.div`
+display:flex;
 height:100%;
-width:150px;
+width:200px;
+margin:0 5%;
 text-align:center;
 `
 const Photo = styled.img`
@@ -18,6 +21,10 @@ height: 100px;
 width:100px;
 border-radius:50%;
 display:block;
+`
+const Text = styled.h3`
+font-size:3rem;
+padding:10% 10%;
 `
 const CrewBar = ()=>{
     const {logData} = useContext(LoggedContext);
@@ -37,7 +44,7 @@ const CrewBar = ()=>{
     <Wrapper>
         {
             logData&&logData.groups.map((item,index)=>(
-            <Item key={item}><Photo src={photos[index]}/>{item}</Item>
+            <Item key={item}><Photo src={photos[index]}/><Text>{item}</Text></Item>
                 ))
         }
     </Wrapper>

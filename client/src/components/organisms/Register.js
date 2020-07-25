@@ -36,9 +36,9 @@ const Register = ({toLog}) =>{
         >
               <Head>Register</Head>
               {valid&&<Valid>Invalid fields or user arleady exist</Valid>}
-            <Input name='username' change={change}/>
-            <Input name='password'change={change}/>
-            <Input name='email'change={change}/>
+            <Input name='username' holder='username' change={change}/>
+            <Input name='password' holder='password' change={change}/>
+            <Input name='email' holder='email' change={change}/>
             <Button type='submit'>Create Account</Button>
         </Form>
     )

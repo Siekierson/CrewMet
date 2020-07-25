@@ -40,6 +40,7 @@ const CreateCrewView = () =>{
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({login:logData.username,crewname:inputs.crewname})
         })
+        localStorage.setItem('logData',JSON.stringify({...logData,groups:logData.groups.push(inputs.crewname)}))
         }
         const exist= await fetch(`http://localhost:5000/crews/exist/${inputs.crewname}`).then(res=>res.json())
         exist&&inputs.crewname&&inputs.description&&inputs.password?(fetchFun()):(setInfo([true,false]))
@@ -48,10 +49,10 @@ const CreateCrewView = () =>{
         <Form id='createCrew' onSubmit={submit} initial={{x:'130%',y:'20%'}}>
             <Header>Create your crew</Header>
             {info[0]&&<Info scnd={info[1]}>{info[1]?'Crew created':'Something gone wrong'}</Info>}
-            <Input name='crewname' change={change}/>
-            <Input name='description' change={change}/>
-            <Input name='password' change={change}/>
-            <Input name='photo' change={change}/>
+            <Input name='crewname' holder='name of crew' change={change}/>
+            <Input name='description' holder='description'change={change}/>
+            <Input name='password' holder='password to group' change={change}/>
+            <Input name='photo' holder='link to photo (not required)' change={change}/>
             <Button type='submit'>Create crew</Button>
         </Form>
     )
