@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,useEffect} from 'react';
 import styled from 'styled-components';
 import {Switch,Route} from 'react-router-dom';
 import {Redirect} from 'react-router';
@@ -13,13 +13,17 @@ margin-top:100px;
 height:calc(100vh - 100px);
 `
 const RouterSwitch = () =>{
-    const {logData,wait} = useContext(LoggedContext);
+    const {logData,setLogData,wait} = useContext(LoggedContext);
+    const localData=JSON.parse(localStorage.getItem('logData'))
+    useEffect(() => {
+        if(!logData&&localData)setLogData(localData)
+    }, [])
     return(
         <Wrapper>
             <Switch>
                 <Route exact path='/' component={BasicView}/>
                 <Route path='/login' component={LogView}/>
-                {logData?
+                {logData||localData?
                 (<>
                     <Route path='/home' component={HomeView}/>
                     <Route path='/create' component={CreateCrewView}/>

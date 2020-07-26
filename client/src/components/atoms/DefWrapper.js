@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
 height: 100%;
 width:100%;
-padding:3% 10%;
+padding:3%;
 `
 const DefWrapper = ({children})=><Wrapper>{children}</Wrapper>
 export default DefWrapper

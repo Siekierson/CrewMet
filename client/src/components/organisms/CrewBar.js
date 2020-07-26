@@ -1,5 +1,6 @@
 import React,{useContext,useEffect, useState} from 'react';
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 import {LoggedContext} from 'contexts/LoggedContext'
 const Wrapper = styled.div`
 height:150px;
@@ -8,12 +9,14 @@ padding:10px;
 display: flex;
 overflow-y: hidden; 
 overflow-x: auto; 
+margin-bottom:20px;
 `
-const Item = styled.div`
+const Item = styled(Link)`
 display:flex;
 height:100%;
 width:200px;
-margin:0 5%;
+margin-right:5%;
+text-decoration:none;
 text-align:center;
 `
 const Photo = styled.img`
@@ -44,7 +47,7 @@ const CrewBar = ()=>{
     <Wrapper>
         {
             logData&&logData.groups.map((item,index)=>(
-            <Item key={item}><Photo src={photos[index]}/><Text>{item}</Text></Item>
+            <Item key={item} to={`/crews/${item}`}><Photo src={photos[index]}/><Text>{item}</Text></Item>
                 ))
         }
     </Wrapper>

@@ -14,7 +14,7 @@ color:${({scnd})=>scnd?'green':'red'};
 `
 
 const CreateCrewView = () =>{
-    const {logData}=useContext(LoggedContext);
+    const {logData,setLogData}=useContext(LoggedContext);
     const [info,setInfo]=useState([false,false])
     const [inputs,setInputs] = useState({});
     const change = (e)=>setInputs({...inputs,
@@ -24,7 +24,7 @@ const CreateCrewView = () =>{
         e.preventDefault();
         setInputs({...inputs,
             members:logData.username,
-            heads:logData.username   
+            heads:logData.username
         })
         e.target.reset();
         setInfo([true,null])
@@ -40,7 +40,8 @@ const CreateCrewView = () =>{
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({login:logData.username,crewname:inputs.crewname})
         })
-        localStorage.setItem('logData',JSON.stringify({...logData,groups:logData.groups.push(inputs.crewname)}))
+        localStorage.setItem('logData',JSON.stringify({...logData,groups:[...logData.groups,inputs.crewname]}))
+        setLogData({...logData,groups:[...logData.groups,inputs.crewname]})
         }
         const exist= await fetch(`http://localhost:5000/crews/exist/${inputs.crewname}`).then(res=>res.json())
         exist&&inputs.crewname&&inputs.description&&inputs.password?(fetchFun()):(setInfo([true,false]))

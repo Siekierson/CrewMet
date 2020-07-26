@@ -20,14 +20,13 @@ display:block;
 const SearchGroup = ()=>{
     const [letters,setLetters]=useState('');
     const [datas,setDatas]=useState(false);
-    const options =async()=>{
-        await fetch(`http://localhost:5000/crews/list/${letters}`)
+    useEffect(() => {
+            if(letters.length>4){
+             fetch(`http://localhost:5000/crews/list/${letters}`)
              .then(data=>data.json())
              .then(res=>setDatas(res))
             .catch(err=>console.log(err))
-    }
-    useEffect(() => {
-            if(letters.length>4)options()
+            }
         },[letters])
     return(
         <>

@@ -23,12 +23,14 @@ router.route('/add').post((req, res) => {
   .then(() => res.json('Crew added!'))
   .catch(err => res.status(400).json('Error: ' + err));
 });
+
 router.route('/exist/:login').get((req, res) => {
   const {login}=req.params
   Crew.find({"members":login})
     .then(crews => res.json(crews.length?false:true))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
 router.route('/photos').post(async(req, res) => {
   const {groups}=req.body
   let photos
@@ -37,6 +39,14 @@ router.route('/photos').post(async(req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
     res.json(photos.map(item => item.photo))
 });
+
+router.route('/photoDesc/:name').get(async(req, res) => {
+  const {name}=req.params
+    await Crew.findOne({"crewname":name})
+    .then(crew =>res.json([crew.photo,crew.description]))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 router.route('/list/:letters').get(async(req, res) => {
   const {letters}=req.params
   let all;
@@ -46,4 +56,15 @@ router.route('/list/:letters').get(async(req, res) => {
   const conditionaled =all?(all.map(item=>({crewname:item.crewname,photo:item.photo}))):null
     res.json(conditionaled)
 });
+
+router.route('/belong/:name').get(async(req, res) => {
+  const {name}=req.params
+  let all;
+    await Crew.find({"crewname":{$regex : `.*${letters}.*`}})
+    .then(crews =>all=crews)
+    .catch(err => res.status(400).json('Error: ' + err));
+  const conditionaled =all?(all.map(item=>({crewname:item.crewname,photo:item.photo}))):null
+    res.json(conditionaled)
+});
+
 module.exports = router;
