@@ -17,7 +17,7 @@ const RouterSwitch = () =>{
     const localData=JSON.parse(localStorage.getItem('logData'))
     useEffect(() => {
         if(!logData&&localData)setLogData(localData)
-    }, [])
+    }, [logData,localData,setLogData])
     return(
         <Wrapper>
             <Switch>

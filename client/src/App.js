@@ -7,7 +7,6 @@ import RouterSwitch from 'components/organisms/RouterSwitch';
 
 const App = ()=>{
   return (
-    <div className="App">
       <LoggedProvider>
         <BrowserRouter>
           <FriendVideo/>
@@ -15,7 +14,6 @@ const App = ()=>{
           <RouterSwitch/>
         </BrowserRouter>
       </LoggedProvider>
-    </div>
   );
 }
 

@@ -6,12 +6,9 @@ import Input from 'components/atoms/Input';
 import Form from 'components/atoms/Form';
 import {Redirect} from 'react-router-dom';
 import {LoggedContext} from 'contexts/LoggedContext';
+import Valid from 'components/atoms/Valid';
 const Head = styled.h1`
 font-size:5rem;
-`
-const Valid = styled.h2`
-font-size:2rem;
-color:red;
 `
 const Login = () =>{
     const {setLogData,setWait} = useContext(LoggedContext)
@@ -29,6 +26,16 @@ const Login = () =>{
     const storagedLogin = ()=>{
         setLogData(ls)
     }
+    const submit =async(e)=>{
+        e.preventDefault()
+        e.target.reset()
+        setWait(true)
+        const {username,password}=inputs
+        await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
+         .then(response => response.json())
+        .then(data => data?isLogged(data):setRdr(false))
+        .catch(err=>setRdr(false))
+    }
     useEffect(()=>{
         const newls=JSON.parse(localStorage.getItem('logData'))
         setLs(newls);
@@ -42,21 +49,13 @@ const Login = () =>{
           stiffness: 160,
           damping: 10
         }}
-        onSubmit={async(e)=>{
-            e.preventDefault()
-            setWait(true)
-            const {username,password}=inputs
-            await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
-             .then(response => response.json())
-            .then(data => data?isLogged(data):setRdr(false))
-            .catch(err=>setRdr(false))
-        }}
+        onSubmit={submit}
         >
             {rdr&&<Redirect to='/home'/>}
             <Head>Log In</Head>
             {rdr===false&&<Valid>Invalid fields or user is not exist</Valid>}
-            <Input name='username' holder='username' change={change}/>
-            <Input name='password' holder='password' change={change}/>
+            <Input name='username' placeholder='username' onChange={change}/>
+            <Input name='password' type='password' holder='password' onChange={change}/>
             <Button type='submit'>Log In</Button>
             {ls&&<ButtonLink onClick={storagedLogin} path='/home'>Or log as {ls.username}</ButtonLink>}
         </Form>

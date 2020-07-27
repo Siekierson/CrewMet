@@ -32,17 +32,18 @@ padding:10% 10%;
 const CrewBar = ()=>{
     const {logData} = useContext(LoggedContext);
     const [photos,setPhotos]=useState([])
-    const getPhotos= () => {
-        fetch('http://localhost:5000/crews/photos',{
-            method:"POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({"groups":logData.groups})
+    useEffect(()=>{
+        const a=async()=>{
+        await fetch('http://localhost:5000/crews/photos',{
+        method:"POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({"groups":logData.groups})
         })
-             .then(response => response.json())
-            .then(data =>setPhotos(data))
-            .catch(err=>console.log(err))
-    }
-    useEffect(()=>{getPhotos()},[])
+         .then(response => response.json())
+        .then(data =>setPhotos(data))
+        .catch(err=>console.log(err))}
+        a()
+    },[logData.groups])
     return(
     <Wrapper>
         {

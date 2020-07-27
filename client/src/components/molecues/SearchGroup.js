@@ -30,7 +30,7 @@ const SearchGroup = ()=>{
         },[letters])
     return(
         <>
-        <Input holder='search crew' change={(e)=>setLetters(e.target.value)}/>
+        <Input placeholder='search crew' onChange={(e)=>setLetters(e.target.value)}/>
         <Popup>
             {datas&&(datas.map((item,index)=>(
                 <Item path={`/crews/${item.crewname}`} key={item.crewname}><Photo src={item.photo}/><h3>{item.crewname}</h3></Item>

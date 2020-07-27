@@ -3,12 +3,9 @@ import styled from 'styled-components';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import Form from 'components/atoms/Form';
+import Valid from 'components/atoms/Valid';
 const Head = styled.h1`
 font-size:5rem;
-`
-const Valid = styled.h2`
-font-size:3rem;
-color:red;
 `
 const Register = ({toLog}) =>{
     const [inputs,setInputs] = useState({})
@@ -36,9 +33,9 @@ const Register = ({toLog}) =>{
         >
               <Head>Register</Head>
               {valid&&<Valid>Invalid fields or user arleady exist</Valid>}
-            <Input name='username' holder='username' change={change}/>
-            <Input name='password' holder='password' change={change}/>
-            <Input name='email' holder='email' change={change}/>
+            <Input name='username' placeholder='username' onChange={change}/>
+            <Input name='password' type='password' placeholder='password' onChange={change}/>
+            <Input name='email' placeholder='email' onChange={change}/>
             <Button type='submit'>Create Account</Button>
         </Form>
     )

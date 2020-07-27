@@ -6,7 +6,8 @@ const crewSchema = new Schema({
     crewname:{
         type:String,
         required:true
-    },description:{
+    },
+    description:{
         type:String,
         required:true
     },
@@ -15,7 +16,7 @@ const crewSchema = new Schema({
         required:true
     },
     members:{
-        type:Array,
+        type:[],
         required:true
     },
     heads:{

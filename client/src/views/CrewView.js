@@ -1,61 +1,62 @@
-import React,{useState,useEffect} from 'react';
-import styled from 'styled-components';
+import React,{useState,useContext,useEffect} from 'react';
 import { useLocation } from 'react-router-dom'
+import {LoggedContext} from 'contexts/LoggedContext';
 import DefWrapper from 'components/atoms/DefWrapper';
-const Header = styled.div`
-width:350px;
-height:100%;
-position:absolute;
-padding:20px;
-display:flex;
-flex-wrap:wrap;
-background-color: rgba(0,0,0,.5);
-border-radius:50px;
-text-align:center;
-`
-const Photo = styled.img`
-position:absolute;
-left:50%;
-top:15%;
-transform:translate(-50%,-50%);
-height: 180px;
-width:180px;
-border-radius:50%;
-display:block;
-`
-const Text = styled.h1`
-font-size:4rem;
-margin:70% 0 -100% 0;
-width:100%;
-`
-const Description = styled.h2`
-font-size:2.5rem;
-font-weight:lighter;
-width:100%;
-`
+import Button from 'components/atoms/Button';
+import Input from 'components/atoms/Input';
+import Form from 'components/atoms/Form';
+import Valid from 'components/atoms/Valid';
+import {Header,Photo,Text,Desc,Main,Wrap} from './styled/styledCrewView';
+
 const CrewView = ()=>{
+    const {logData}=useContext(LoggedContext);
     const [photo,setPhoto]=useState('')
+    const [input,setInput]=useState('')
+    const [log,setLog]=useState(false)
+    const [valid,setValid]=useState(false)
     let location = useLocation();
     const name = location.pathname.split("/").pop();
-    const localData=JSON.parse(localStorage.getItem('logData'))
-    const getPhoto =async()=>{
-        await fetch(`http://localhost:5000/crews/photoDesc/${name}`)
-        .then(response => response.json())
-        .then(data =>setPhoto(data))
-        .catch(err=>console.log(err))
+    const submit = async(e)=>{
+        e.preventDefault()
+        e.target.reset()
+        await fetch(`http://localhost:5000/crews/auth/${name}/${input}`)
+            .then(response => response.json())
+            .then(data =>data?setLog(true):setValid(true))
+            .catch(err=>console.log(err))
     }
+    const change=(e)=>setInput(e.target.value)
     useEffect(() =>{
-        const a =async()=>getPhoto()
+        const a =async()=>{
+            await fetch(`http://localhost:5000/crews/photoDesc/${name}`)
+            .then(response => response.json())
+            .then(data =>setPhoto(data))
+            .catch(err=>console.log(err))
+            await fetch(`http://localhost:5000/crews/belong/${name}/${logData.username}`)
+            .then(response => response.json())
+            .then(data =>setLog(data))
+            .catch(err=>console.log(err))
+        }
         a()
-    } , [])
+    } , [name,logData.username])
     return(
         <DefWrapper>
             <Header>
                 <Photo src={photo[0]}/>
                 <Text>{name}</Text>
-                <Description>{photo[1]}</Description>
-                {}
+                <Desc>{photo[1]}</Desc>
             </Header>
+            <Main>
+            {log?('jset'):(
+                <Wrap>
+                <Form onSubmit={submit}>
+                    {valid&&<Valid>Invalid password</Valid>}
+                    <Desc>You must enter a password, to see group</Desc>
+                    <Input type='password' onChange={change}/>
+                    <Button>Enter</Button>
+                </Form>
+                </Wrap>
+            )}
+            </Main>
         </DefWrapper>
     )
 }
