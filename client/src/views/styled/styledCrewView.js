@@ -31,14 +31,13 @@ font-weight:lighter;
 width:100%;
 `
 export const Main = styled.div`
-width:calc(94% - 350px);
+width:calc(97% - 350px - 50px);
 height:100%;
 margin-left:350px;
 position:absolute;
-/* background: #000; */
 `
-export const Wrap = styled.div`
+export const StyledSwitch = styled.div`
 position:absolute;
-top:50%;
-left:50%;
+top:-20px;
+left:100px;
 `

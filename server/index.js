@@ -17,7 +17,11 @@ connection.once('open',function(){
 
 const crewsRouter = require('./routes/crews');
 const usersRouter = require('./routes/users');
-
+const meetingsRouter = require('./routes/meetings');
+const messagesRouter = require('./routes/messages');
 app.use('/crews',crewsRouter);
-app.use('/users',usersRouter)
+app.use('/users',usersRouter);
+app.use('/meetings',meetingsRouter);
+app.use('/messages',messagesRouter)
+
 app.listen(port,()=>console.log(`Server is listening at http://localhost:${port}`));

@@ -1,27 +1,48 @@
 import React,{useState,useContext,useEffect} from 'react';
-import { useLocation } from 'react-router-dom'
+import {useLocation} from 'react-router-dom'
 import {LoggedContext} from 'contexts/LoggedContext';
 import DefWrapper from 'components/atoms/DefWrapper';
 import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import Form from 'components/atoms/Form';
 import Valid from 'components/atoms/Valid';
-import {Header,Photo,Text,Desc,Main,Wrap} from './styled/styledCrewView';
-
+import {Header,Photo,Text,Desc,Main,StyledSwitch} from './styled/styledCrewView';
+import Switch from 'components/atoms/Switch';
+import Conversation from './crewViews/Conversation';
+import Meetings from './crewViews/Meetings';
 const CrewView = ()=>{
-    const {logData}=useContext(LoggedContext);
+    const {logData,setLogData}=useContext(LoggedContext);
     const [photo,setPhoto]=useState('')
-    const [input,setInput]=useState('')
+    const [input,setInput]=useState('s')
     const [log,setLog]=useState(false)
+    const [circle,setCircle]=useState(true)
     const [valid,setValid]=useState(false)
     let location = useLocation();
     const name = location.pathname.split("/").pop();
     const submit = async(e)=>{
         e.preventDefault()
         e.target.reset()
-        await fetch(`http://localhost:5000/crews/auth/${name}/${input}`)
+        const truefun =async(data)=>{
+            const dataObj={...logData,groups:[...logData.groups,name]}
+            localStorage.setItem('logData',JSON.stringify(dataObj))
+            setLogData(dataObj)
+            setLog(data)
+            await fetch(`http://localhost:5000/users/group`,{
+                method:"PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({login:logData.username,crewname:name})
+            })
             .then(response => response.json())
-            .then(data =>data?setLog(true):setValid(true))
+            .then(data=>console.log(data))
+            .catch(err=>console.log(err))
+        }
+        await fetch(`http://localhost:5000/crews/auth/${name}/${input}`,{
+            method:"POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(logData)
+        })
+            .then(response => response.json())
+            .then(data =>data?truefun(data):setValid(true))
             .catch(err=>console.log(err))
     }
     const change=(e)=>setInput(e.target.value)
@@ -46,15 +67,24 @@ const CrewView = ()=>{
                 <Desc>{photo[1]}</Desc>
             </Header>
             <Main>
-            {log?('jset'):(
-                <Wrap>
+            {log?(<>
+                <StyledSwitch><Switch circle={circle} setCircle={()=>setCircle(!circle)}/></StyledSwitch>
+                {
+                    circle?(
+                        <Conversation/>
+                    ):
+                    (
+                       <Meetings/>
+                    )
+                }
+                </>
+            ):(
                 <Form onSubmit={submit}>
                     {valid&&<Valid>Invalid password</Valid>}
                     <Desc>You must enter a password, to see group</Desc>
                     <Input type='password' onChange={change}/>
                     <Button>Enter</Button>
                 </Form>
-                </Wrap>
             )}
             </Main>
         </DefWrapper>

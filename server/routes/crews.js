@@ -63,4 +63,20 @@ router.route('/belong/:crew/:name').get(async(req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+router.route('/auth/:name/:input').post(async(req, res) => {
+  const {name,input}=req.params
+  const logData=req.body
+  const putMeth=async(crew)=>{
+    await Crew.updateOne(
+      { "crewname":name },
+      { $addToSet: { members: logData.username } }
+   )
+   localStorage.setItem('logData',JSON.stringify({...logData,groups:[...logData.groups,name]}))
+   res.json(crew)
+  }
+    await Crew.findOne({"crewname":name})
+    .then(crew =>crew.password===`${input}`?putMeth(crew):res.json(false))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 module.exports = router;
