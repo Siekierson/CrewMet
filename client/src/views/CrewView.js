@@ -71,7 +71,7 @@ const CrewView = ()=>{
                 <StyledSwitch><Switch circle={circle} setCircle={()=>setCircle(!circle)}/></StyledSwitch>
                 {
                     circle?(
-                        <Conversation/>
+                        <Conversation user={logData.username} groupId={log._id} name={name}/>
                     ):
                     (
                        <Meetings/>
@@ -79,7 +79,7 @@ const CrewView = ()=>{
                 }
                 </>
             ):(
-                <Form onSubmit={submit}>
+                <Form scnd onSubmit={submit}>
                     {valid&&<Valid>Invalid password</Valid>}
                     <Desc>You must enter a password, to see group</Desc>
                     <Input type='password' onChange={change}/>

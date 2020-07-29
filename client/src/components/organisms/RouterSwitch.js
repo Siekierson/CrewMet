@@ -8,6 +8,7 @@ import LogView from 'views/LogView';
 import HomeView from 'views/HomeView' 
 import CreateCrewView from 'views/CreateCrewView';
 import CrewView from 'views/CrewView';
+import {useLocation} from 'react-router-dom'
 const Wrapper = styled.div`
 margin-top:100px;
 height:calc(100vh - 100px);
@@ -15,6 +16,8 @@ height:calc(100vh - 100px);
 const RouterSwitch = () =>{
     const {logData,setLogData,wait} = useContext(LoggedContext);
     const localData=JSON.parse(localStorage.getItem('logData'))
+    let location = useLocation();
+    const name = location.pathname.split("/");
     useEffect(() => {
         if(!logData&&localData)setLogData(localData)
     }, [logData,localData,setLogData])
