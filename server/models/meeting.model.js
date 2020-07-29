@@ -12,12 +12,8 @@ const meetSchema = new Schema({
         required:true
     },
     date:{
-        type:Date,
+        type:String,
         required:true
-    },
-    alco:{
-        type:[],
-        required:false
     },
     takes:{
         type:[],

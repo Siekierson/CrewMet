@@ -7,9 +7,9 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 router.route('/create').post((req, res) => {
-    const {} = req.body
+    const {meetname,description,date,takes,location} = req.body
     const newMeeting = new Meeting({
-      
+      meetname,description,date,takes,location
     });
     newMeeting.save()
     .then(() => res.json('Meeting added!'))
