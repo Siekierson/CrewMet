@@ -4,12 +4,12 @@ import { motion } from 'framer-motion';
 const FormIn = styled(motion.form)`
 position:absolute;
 height: 50vh;
-width:30vw;
+width:40vw;
 ${({ scnd }) =>
     scnd &&
     css`
-      top:50%;
-      left:50%;
+      top:40%;
+      left:60%;
     `}
 transform:translate(-50%,-50%);
 `

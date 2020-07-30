@@ -7,14 +7,34 @@ router.route('/').get((req, res) => {
     .catch(err => res.status(400).json('Error: ' + err));
 });
 router.route('/create').post((req, res) => {
-    const {meetname,description,date,takes,location} = req.body
+    const {meetname,groupId,description,date,time,location} = req.body
+    const equaled = `${date}, ${time}`
     const newMeeting = new Meeting({
-      meetname,description,date,takes,location
+      meetname,group:groupId,description,date:equaled,takes:[],location
     });
     newMeeting.save()
     .then(() => res.json('Meeting added!'))
     .catch(err => res.status(400).json('Error: ' + err));
   });
-  
+  router.route('/get/:id').get((req, res) => {
+    const {id}=req.params;
+    Meeting.find({group:id})
+      .then(meeting => res.json(meeting))
+      .catch(err => res.status(400).json('Error: ' + err));
+  });
+  router.route('/confirm').put((req, res) => {
+    const {id,user} = req.body;
+    Meeting.collection.updateOne(
+      { _id:id },
+      {
+        $push:{
+          "takes": user
+        }
+      }
+   )
+  Meeting.findOne({_id:id})
+      .then(meeting => res.json(meeting))
+
+  });
 
 module.exports = router;

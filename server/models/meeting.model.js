@@ -3,6 +3,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const meetSchema = new Schema({
+    group:{
+        type:String,
+        required:true
+    },
     meetname:{
         type:String,
         required:true

@@ -74,7 +74,7 @@ const CrewView = ()=>{
                         <Conversation user={logData.username} groupId={log._id} name={name}/>
                     ):
                     (
-                       <Meetings/>
+                       <Meetings user={logData.username} groupId={log._id}/>
                     )
                 }
                 </>

@@ -21,6 +21,7 @@ router.route('/get/:id').get((req, res) => {
     .then(mess => res.json(mess))
     .catch(err => res.status(400).json('Error: ' + err));
 });
+
 // delete all mess for development :))
 // router.route('/all').delete((req, res) => {
 //   Message.remove()
