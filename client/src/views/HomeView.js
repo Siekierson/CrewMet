@@ -1,5 +1,4 @@
-import React,{useContext} from 'react'
-import styled from 'styled-components';
+import React,{useContext} from 'react';
 import ButtonLink from 'components/molecues/ButtonLink';
 import SearchGroup from 'components/molecues/SearchGroup';
 import CrewBar from 'components/organisms/CrewBar';
