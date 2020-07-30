@@ -27,7 +27,7 @@ const CrewView = ()=>{
             localStorage.setItem('logData',JSON.stringify(dataObj))
             setLogData(dataObj)
             setLog(data)
-            await fetch(`http://localhost:5000/users/group`,{
+            await fetch(`/users/group`,{
                 method:"PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({login:logData.username,crewname:name})
@@ -36,7 +36,7 @@ const CrewView = ()=>{
             .then(data=>console.log(data))
             .catch(err=>console.log(err))
         }
-        await fetch(`http://localhost:5000/crews/auth/${name}/${input}`,{
+        await fetch(`/crews/auth/${name}/${input}`,{
             method:"POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(logData)
@@ -48,11 +48,11 @@ const CrewView = ()=>{
     const change=(e)=>setInput(e.target.value)
     useEffect(() =>{
         const a =async()=>{
-            await fetch(`http://localhost:5000/crews/photoDesc/${name}`)
+            await fetch(`/crews/photoDesc/${name}`)
             .then(response => response.json())
             .then(data =>setPhoto(data))
             .catch(err=>console.log(err))
-            await fetch(`http://localhost:5000/crews/belong/${name}/${logData.username}`)
+            await fetch(`/crews/belong/${name}/${logData.username}`)
             .then(response => response.json())
             .then(data =>setLog(data))
             .catch(err=>console.log(err))

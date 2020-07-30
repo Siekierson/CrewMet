@@ -22,7 +22,7 @@ const SearchGroup = ()=>{
     const [datas,setDatas]=useState(false);
     useEffect(() => {
             if(letters.length>4){
-             fetch(`http://localhost:5000/crews/list/${letters}`)
+             fetch(`/crews/list/${letters}`)
              .then(data=>data.json())
              .then(res=>setDatas(res))
             .catch(err=>console.log(err))

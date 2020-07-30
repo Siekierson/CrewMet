@@ -16,7 +16,7 @@ const Register = ({toLog}) =>{
     return(
         <Form
         initial={{x:'60%',y:'20%'}}
-        animate={{x:'200%'}}
+        animate={{x:'150%'}}
         transition={{
             type: "spring",
             stiffness: 160,
@@ -24,7 +24,7 @@ const Register = ({toLog}) =>{
           }}
         onSubmit={async(e)=>{
             e.preventDefault();
-            await fetch('http://localhost:5000/users/add',{
+            await fetch('/users/add',{
                 method:"POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(inputs)

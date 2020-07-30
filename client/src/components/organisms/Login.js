@@ -31,7 +31,7 @@ const Login = () =>{
         e.target.reset()
         setWait(true)
         const {username,password}=inputs
-        await fetch(`http://localhost:5000/users/auth/${username}/${password}`)
+        await fetch(`/users/auth/${username}/${password}`)
          .then(response => response.json())
         .then(data => data?isLogged(data):setRdr(false))
         .catch(err=>setRdr(false))

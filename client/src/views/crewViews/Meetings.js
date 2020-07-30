@@ -46,24 +46,24 @@ const Meetings = ({groupId,user}) =>{
         setCreate(false)
         e.preventDefault()
         e.target.reset()
-        await fetch(`http://localhost:5000/meetings/create`,{
+        await fetch(`/meetings/create`,{
             method:"POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(inputs)
             })
-        await fetch(`http://localhost:5000/meetings/get/${groupId}`)
+        await fetch(`/meetings/get/${groupId}`)
         .then(res=>res.json())
         .then(data=>setMeets(data))
     }
     const confirm = (i)=>{
-             fetch(`http://localhost:5000/meetings/confirm`,{
+             fetch(`/meetings/confirm`,{
                 method:"PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({id:meets[i]._id,user})
             })
     }
     useEffect(() => {
-        const a=async()=>await fetch(`http://localhost:5000/meetings/get/${groupId}`).then(res=>res.json()).then(data=>setMeets(data))
+        const a=async()=>await fetch(`/meetings/get/${groupId}`).then(res=>res.json()).then(data=>setMeets(data))
         a()
     }, [groupId])
     return(

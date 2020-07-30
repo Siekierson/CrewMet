@@ -34,7 +34,7 @@ const CrewBar = ()=>{
     const [photos,setPhotos]=useState([])
     useEffect(()=>{
         const a=async()=>{
-        await fetch('http://localhost:5000/crews/photos',{
+        await fetch('/crews/photos',{
         method:"POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({"groups":logData.groups})

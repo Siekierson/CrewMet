@@ -25,13 +25,13 @@ const CreateCrewView = () =>{
         e.target.reset();
         setInfo([true,null])
         const fetchFun=()=>{
-            fetch(`http://localhost:5000/crews/add`,{
+            fetch(`/crews/add`,{
             method:"POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(inputs)
                 })
             setInfo([true,true])
-             fetch(`http://localhost:5000/users/group`,{
+             fetch(`/users/group`,{
             method:"PUT",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({login:logData.username,crewname:inputs.crewname})
@@ -39,7 +39,7 @@ const CreateCrewView = () =>{
         localStorage.setItem('logData',JSON.stringify({...logData,groups:[...logData.groups,inputs.crewname]}))
         setLogData({...logData,groups:[...logData.groups,inputs.crewname]})
         }
-        const exist= await fetch(`http://localhost:5000/crews/exist/${inputs.crewname}`).then(res=>res.json())
+        const exist= await fetch(`/crews/exist/${inputs.crewname}`).then(res=>res.json())
         exist&&inputs.member&&inputs.crewname.length>4&&inputs.description.length>4&&inputs.password.length>4?(fetchFun()):(setInfo([true,false]))
     }
     useEffect(() => {
