@@ -61,7 +61,7 @@ const Conversation = ({user,groupId,name}) =>{
     }
     useEffect(()=>{
         setInterval(async()=>{
-            await fetch(`http://localhost:5000/messages/get/${groupId}`)
+            await fetch(`/messages/get/${groupId}`)
             .then(res=>res.json())
             .then(data=>setMess(data))
         },2000)
