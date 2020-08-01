@@ -13,6 +13,10 @@ outline:none;
 :hover{
     background-color:rgba(255,255,255,.2);
 }
+@media (max-width: 500px) {
+    font-size:2rem;
+    padding:10px 25px;
+}
 `
 const Button = ({children,onClick,type}) => {
     return(

@@ -11,6 +11,8 @@ import CrewView from 'views/CrewView';
 const Wrapper = styled.div`
 margin-top:100px;
 height:calc(100vh - 100px);
+width:100%;
+overflow:hidden;
 `
 const RouterSwitch = () =>{
     const {logData,setLogData,wait} = useContext(LoggedContext);

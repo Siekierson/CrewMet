@@ -6,6 +6,9 @@ font-size:5rem;
 text-align:center;
 line-height:100%;
 color:${({color})=>color};
+@media (max-width: 500px) {
+    font-size: 3rem;
+}
 `
 const Logo = ({color}) =><Log color={color}>CrewMet</Log>
 

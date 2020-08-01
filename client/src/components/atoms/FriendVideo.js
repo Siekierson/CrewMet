@@ -1,9 +1,12 @@
 import React from 'react'
 import styled from 'styled-components';
 const Video = styled.video`
-position:absolute;
+position:fixed;
 bottom:0;
 z-index:-2;
+@media (max-width: 500px) {
+    left:-1100px;
+}
 ` 
 const Shadow = styled.div`
 position:absolute;
@@ -12,7 +15,6 @@ width:100vw;
 margin-top:-100px;
 background-color: rgba(0,0,0,.8);
 z-index:-1;
-
 `
 const FriendVideo = () =>(
     <>

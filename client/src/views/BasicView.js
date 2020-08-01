@@ -14,9 +14,14 @@ const Slogan = styled(motion.h1)`
 padding:30px;
 font-size:7rem;
 color: white;
+margin-bottom:20px;
+width:100%;
+@media (max-width: 500px) {
+    font-size: 4.4rem;
+    padding:0;
+}
 `
 const BtnMotion = styled(motion.div)`
-padding:10px;
 `
 const BasiView = () =>{
   

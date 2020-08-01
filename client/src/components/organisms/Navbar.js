@@ -10,6 +10,9 @@ top:0;
 left:0;
 padding:20px 40px;
 border-bottom:4px solid orange;
+@media (max-width: 500px) {
+    height: 60px;
+}
 `
 const Navbar = () =>{
     return(

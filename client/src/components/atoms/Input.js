@@ -14,6 +14,10 @@ transition:.5s;
 :focus{
     border:1px solid orange;
 }
+@media (max-width: 500px) {
+    font-size: 1.8rem;
+    padding:10px 12px;
+}
 `
 
 const Input = ({name,onChange,placeholder,type,ref})=>{

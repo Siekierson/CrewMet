@@ -13,8 +13,8 @@ ${({ scnd }) =>
     `}
 transform:translate(-50%,-50%);
 `
-const Form = ({scnd,children,animate,initial,transition,onSubmit}) =>{
-    const props = {scnd,animate,initial,transition,onSubmit};
+const Form = ({scnd,children,animate,initial,transition,variants,onSubmit}) =>{
+    const props = {scnd,animate,initial,transition,variants,onSubmit};
     return(
         <FormIn {...props}>{children}</FormIn>
         )

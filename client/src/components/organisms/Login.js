@@ -9,6 +9,9 @@ import {LoggedContext} from 'contexts/LoggedContext';
 import Valid from 'components/atoms/Valid';
 const Head = styled.h1`
 font-size:5rem;
+@media (max-width: 500px) {
+    font-size:3rem;
+}
 `
 const Login = () =>{
     const {setLogData,setWait} = useContext(LoggedContext)
@@ -36,19 +39,23 @@ const Login = () =>{
         .then(data => data?isLogged(data):setRdr(false))
         .catch(err=>setRdr(false))
     }
+    const vars={
+        hidden:{ x:window.innerWidth<500?'60%':'150%',y:window.innerWidth<500?'10%':'20%'},
+        visible:{ x:window.innerWidth<500?'20%':'70%',transition:{
+            type: "spring",
+            stiffness: 160,
+            damping: 10
+            } }
+    }
     useEffect(()=>{
         const newls=JSON.parse(localStorage.getItem('logData'))
         setLs(newls);
     },[])
     return(
         <Form
-        initial={{x:'150%',y:'20%'}}
-        animate={{ x:'70%' }}
-        transition={{
-          type: "spring",
-          stiffness: 160,
-          damping: 10
-        }}
+        variants={vars}
+        initial='hidden'
+        animate='visible'
         onSubmit={submit}
         >
             {rdr&&<Redirect to='/home'/>}

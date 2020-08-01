@@ -6,6 +6,9 @@ import Form from 'components/atoms/Form';
 import Valid from 'components/atoms/Valid';
 const Head = styled.h1`
 font-size:5rem;
+@media (max-width: 500px) {
+    font-size:3rem;
+}
 `
 const Register = ({toLog}) =>{
     const [inputs,setInputs] = useState({})
@@ -13,15 +16,19 @@ const Register = ({toLog}) =>{
     const change = (e)=>setInputs({...inputs,
         [e.target.name]:e.target.value
     })
-    return(
-        <Form
-        initial={{x:'60%',y:'20%'}}
-        animate={{x:'150%'}}
-        transition={{
+    const vars={
+        hidden:{x:window.innerWidth<500?'10%':'70%',y:window.innerWidth<500?'10%':'20%'},
+        visible:{ x:window.innerWidth<500?'50%':'150%',transition:{
             type: "spring",
             stiffness: 160,
             damping: 10
-          }}
+            } }
+    }
+    return(
+        <Form
+        variants={vars}
+        initial='hidden'
+        animate='visible'
         onSubmit={async(e)=>{
             e.preventDefault();
             await fetch('/users/add',{
