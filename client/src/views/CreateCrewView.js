@@ -3,14 +3,14 @@ import styled from 'styled-components';
 import Form from 'components/atoms/Form';
 import Input from 'components/atoms/Input';
 import Button from 'components/atoms/Button';
+import Valid from 'components/atoms/Valid';
 import {LoggedContext} from 'contexts/LoggedContext';
 const Header = styled.h1`
 font-size:5rem;
 margin-bottom:40px;
-`
-const Info = styled.h2`
-font-size:3rem;
-color:${({scnd})=>scnd?'green':'red'};
+@media (max-width: 500px) {
+    font-size:3rem;
+}
 `
 
 const CreateCrewView = () =>{
@@ -42,13 +42,23 @@ const CreateCrewView = () =>{
         const exist= await fetch(`/crews/exist/${inputs.crewname}`).then(res=>res.json())
         exist&&inputs.member&&inputs.crewname.length>4&&inputs.description.length>4&&inputs.password.length>4?(fetchFun()):(setInfo([true,false]))
     }
+    const vars = {
+        hidden:{ x:window.innerWidth<500?'60%':'150%',y:'30%'},
+        visible:{ x:window.innerWidth<500?'50%':'70%',y:'10%',transition:{
+            type: "spring",
+            stiffness: 160,
+            damping: 15
+            } }
+    }
     useEffect(() => {
         setInputs({member:logData.username})
     }, [logData])
     return(
-        <Form id='createCrew' onSubmit={submit} initial={{x:'130%',y:'20%'}}>
+        <Form id='createCrew' create onSubmit={submit} variants={vars}
+        initial='hidden'
+        animate='visible'>
             <Header>Create your crew</Header>
-            {info[0]&&<Info scnd={info[1]}>{info[1]?'Crew created':'Something gone wrong'}</Info>}
+            {info[0]&&<Valid scnd={info[1]}>{info[1]?'Crew created':'Something gone wrong'}</Valid>}
             <Input name='crewname' placeholder='name of crew' onChange={change}/>
             <Input name='description' placeholder='description'onChange={change}/>
             <Input name='password' type='password' placeholder='password to group' onChange={change}/>

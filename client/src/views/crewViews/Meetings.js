@@ -33,6 +33,7 @@ width:80%;
 margin:10px;
 padding:10px;
 font-size:2rem;
+border:2px solid white;
 background-color: #000;
 `
 const Meetings = ({groupId,user}) =>{
@@ -55,13 +56,14 @@ const Meetings = ({groupId,user}) =>{
         .then(res=>res.json())
         .then(data=>setMeets(data))
     }
-    const confirm = (i)=>{
-             fetch(`/meetings/confirm`,{
-                method:"PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({id:meets[i]._id,user})
-            })
-    }
+    // next update maybe
+    // const confirm = (i)=>{
+    //          fetch(`/meetings/confirm`,{
+    //             method:"PUT",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({id:meets[i]._id,user})
+    //         })
+    // }
     useEffect(() => {
         const a=async()=>await fetch(`/meetings/get/${groupId}`).then(res=>res.json()).then(data=>setMeets(data))
         a()
@@ -88,7 +90,7 @@ const Meetings = ({groupId,user}) =>{
                 When? : {item.date},<br/>
                 Where? : {item.location},<br/>
                 Confirmed persons: {item.takes.length}<br/>
-                <Button onClick={()=>confirm(index)}>I take part</Button>
+                {/* <Button onClick={()=>confirm(index)}>I take part</Button> */}
             </Item>)):(<Head>No meetings yet</Head>)
         }
         </All>

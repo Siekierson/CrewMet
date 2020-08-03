@@ -29,9 +29,12 @@ margin:2%;
 `
 const Conv = styled.div`
 width:100%;
-height: 90%;
+height: 80%;
 overflow-x: hidden; 
 overflow-y: auto; 
+`
+const InWrap = styled.div`
+margin-bottom:200px;
 `
 const Item = styled.div`
 background-color:${({own})=>own?'rgba(255,165,0,.8)':'rgba(50,50,50,.8)'};
@@ -77,7 +80,7 @@ const Conversation = ({user,groupId,name}) =>{
                 ):(<h1>Refreshing</h1>)
             }
             </Conv>
-            <Input conv type='text' onChange={(e)=>setInput(e.target.value)} placeholder='text to crew'/>
+            <InWrap><Input conv type='text' onChange={(e)=>setInput(e.target.value)} placeholder='text to crew'/></InWrap>
         </Form>
         </>
     )

@@ -11,10 +11,11 @@ ${({ scnd }) =>
       top:40%;
       left:60%;
     `}
+
 transform:translate(-50%,-50%);
 `
-const Form = ({scnd,children,animate,initial,transition,variants,onSubmit}) =>{
-    const props = {scnd,animate,initial,transition,variants,onSubmit};
+const Form = ({scnd,children,animate,initial,create,transition,variants,onSubmit}) =>{
+    const props = {scnd,animate,initial,transition,create,variants,onSubmit};
     return(
         <FormIn {...props}>{children}</FormIn>
         )

@@ -15,6 +15,9 @@ width:100vw;
 margin-top:-100px;
 background-color: rgba(0,0,0,.8);
 z-index:-1;
+@media (max-width: 500px) {
+    margin-top:-50px;
+}
 `
 const FriendVideo = () =>(
     <>
