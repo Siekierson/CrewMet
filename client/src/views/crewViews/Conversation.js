@@ -77,7 +77,7 @@ const Conversation = ({user,groupId,name}) =>{
                 ):(<h1>Refreshing</h1>)
             }
             </Conv>
-            <Input type='text' onChange={(e)=>setInput(e.target.value)} placeholder='text to crew'/>
+            <Input conv type='text' onChange={(e)=>setInput(e.target.value)} placeholder='text to crew'/>
         </Form>
         </>
     )

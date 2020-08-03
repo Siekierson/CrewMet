@@ -62,7 +62,7 @@ const Login = () =>{
             <Head>Log In</Head>
             {rdr===false&&<Valid>Invalid fields or user is not exist</Valid>}
             <Input name='username' placeholder='username' onChange={change}/>
-            <Input name='password' type='password' holder='password' onChange={change}/>
+            <Input name='password' placeholder='password' type='password' holder='password' onChange={change}/>
             <Button type='submit'>Log In</Button>
             {ls&&<ButtonLink onClick={storagedLogin} path='/home'>Or log as {ls.username}</ButtonLink>}
         </Form>

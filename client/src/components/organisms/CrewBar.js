@@ -10,12 +10,16 @@ display: flex;
 overflow-y: hidden; 
 overflow-x: auto; 
 margin-bottom:20px;
+@media (max-width: 500px) {
+    height:100px;
+    width:calc(100vw - 40px);
+}
 `
 const Item = styled(Link)`
 display:flex;
 height:100%;
-width:200px;
-margin-right:5%;
+width:400px;
+margin-right:10%;
 text-decoration:none;
 text-align:center;
 `
@@ -24,10 +28,18 @@ height: 100px;
 width:100px;
 border-radius:50%;
 display:block;
+@media (max-width: 500px) {
+    height:70px;
+    width:70px;
+}
 `
 const Text = styled.h3`
 font-size:3rem;
-padding:10% 10%;
+line-height:100%;
+padding:15% 10%;
+@media (max-width: 500px) {
+    font-size:1.8rem;
+}
 `
 const CrewBar = ()=>{
     const {logData} = useContext(LoggedContext);

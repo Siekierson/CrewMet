@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const Header = styled.div`
+export const InfoBar = styled.div`
 width:350px;
 height:100%;
 position:absolute;

@@ -6,7 +6,7 @@ import Button from 'components/atoms/Button';
 import Input from 'components/atoms/Input';
 import Form from 'components/atoms/Form';
 import Valid from 'components/atoms/Valid';
-import {Header,Photo,Text,Desc,Main,StyledSwitch} from './styled/styledCrewView';
+import {InfoBar,Photo,Text,Desc,Main,StyledSwitch} from './styled/styledCrewView';
 import Switch from 'components/atoms/Switch';
 import Conversation from './crewViews/Conversation';
 import Meetings from './crewViews/Meetings';
@@ -60,12 +60,12 @@ const CrewView = ()=>{
         a()
     } , [name,logData.username])
     return(
-        <DefWrapper>
-            <Header>
+        <DefWrapper flex>
+            <InfoBar>
                 <Photo src={photo[0]}/>
                 <Text>{name}</Text>
                 <Desc>{photo[1]}</Desc>
-            </Header>
+            </InfoBar>
             <Main>
             {log?(<>
                 <StyledSwitch><Switch circle={circle} setCircle={()=>setCircle(!circle)}/></StyledSwitch>

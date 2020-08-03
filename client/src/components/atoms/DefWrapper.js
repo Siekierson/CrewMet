@@ -5,6 +5,10 @@ height: 100%;
 width:100%;
 padding:50px;
 box-sizing:content-box;
+display:${({flex})=>flex&&'flex'};
+@media (max-width: 500px) {
+    padding:20px;
+}
 `
-const DefWrapper = ({children})=><Wrapper>{children}</Wrapper>
+const DefWrapper = ({children,flex})=><Wrapper flex={flex}>{children}</Wrapper>
 export default DefWrapper

@@ -9,7 +9,7 @@ border:1px solid #fff;
 font-size:3rem;
 outline:none;
 display:block;
-margin:10px;
+margin:${({conv})=>conv?'0':'10px'};
 transition:.5s;
 :focus{
     border:1px solid orange;
@@ -20,9 +20,9 @@ transition:.5s;
 }
 `
 
-const Input = ({name,onChange,placeholder,type,ref})=>{
+const Input = ({name,conv,onChange,placeholder,type,ref})=>{
     const all = {
-        name,onChange,placeholder,type,ref
+        name,onChange,conv,placeholder,type,ref
      }
     return(
     <InputIn {...all}/>

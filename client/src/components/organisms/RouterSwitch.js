@@ -13,6 +13,9 @@ margin-top:100px;
 height:calc(100vh - 100px);
 width:100%;
 overflow:hidden;
+@media (max-width: 500px) {
+    margin-top:50px;
+}
 `
 const RouterSwitch = () =>{
     const {logData,setLogData,wait} = useContext(LoggedContext);
