@@ -34,7 +34,9 @@ overflow-x: hidden;
 overflow-y: auto; 
 `
 const InWrap = styled.div`
-margin-bottom:200px;
+position:absolute;
+width:100%;
+bottom:8%;
 `
 const Item = styled.div`
 background-color:${({own})=>own?'rgba(255,165,0,.8)':'rgba(50,50,50,.8)'};

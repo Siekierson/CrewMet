@@ -66,6 +66,7 @@ const CrewView = ()=>{
                 <Text>{name}</Text>
                 <Desc>{photo[1]}</Desc>
             </InfoBar>
+            {window.innerWidth<=500&&<br/>}
             <Main>
             {log?(<>
                 <StyledSwitch><Switch circle={circle} setCircle={()=>setCircle(!circle)}/></StyledSwitch>

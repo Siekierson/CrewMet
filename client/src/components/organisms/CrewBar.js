@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import {LoggedContext} from 'contexts/LoggedContext'
 const Wrapper = styled.div`
 height:150px;
-width:100%;
+width:calc(100% - 100px);
 padding:10px;
 display: flex;
 overflow-y: hidden; 
