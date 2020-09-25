@@ -5,10 +5,7 @@ import Input from "components/atoms/Input";
 import Form from "components/atoms/Form";
 import Valid from "components/atoms/Valid";
 const Head = styled.h1`
-  font-size: 5rem;
-  @media (max-width: 500px) {
-    font-size: 3rem;
-  }
+  font-size: 3rem;
 `;
 const Register = ({ toLog }: any) => {
   //hook
@@ -18,11 +15,11 @@ const Register = ({ toLog }: any) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   const vars = {
     hidden: {
-      x: window.innerWidth < 500 ? "10%" : "70%",
-      y: window.innerWidth < 500 ? "10%" : "20%",
+      x: window.innerWidth < 500 ? "-130%" : "-100%",
+      y: window.innerWidth < 500 ? "-10%" : "10%",
     },
     visible: {
-      x: window.innerWidth < 500 ? "50%" : "150%",
+      x: window.innerWidth < 500 ? "-60%" : "-10%",
       transition: {
         type: "spring",
         stiffness: 160,
@@ -35,7 +32,7 @@ const Register = ({ toLog }: any) => {
       variants={vars}
       initial="hidden"
       animate="visible"
-      onSubmit={async (e:any) => {
+      onSubmit={async (e: any) => {
         e.preventDefault();
         await fetch("/users/add", {
           method: "POST",

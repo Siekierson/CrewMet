@@ -9,7 +9,8 @@ const InputIn = styled.input`
   font-size: 1.5rem;
   outline: none;
   display: block;
-  margin: ${(conv: boolean) => (conv ? "0" : "10px")};
+  /* margin: ${(conv: boolean) => (conv ? "0" : "10px")}; */
+  margin-top:5px;
   transition: 0.5s;
   :focus {
     border: 1px solid orange;

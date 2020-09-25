@@ -8,8 +8,9 @@ const Video = styled.video`
   @media (max-width: 700px) {
     height: 100%;
     width: auto;
-    bottom: 20%;
-    left: -1100px;
+  }
+  @media (max-width: 500px) {
+    left: -650px;
   }
 `;
 const Shadow = styled.div`

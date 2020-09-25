@@ -6,8 +6,8 @@ const ScreenChooser = styled.div`
   top: 20%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 30px;
-  width: 70px;
+  height: 25px;
+  width: 60px;
   background-color: #666;
   border: 2px solid white;
   border-radius: 30px;
@@ -16,12 +16,12 @@ const Dot = styled.div`
   position: absolute;
   top: 50%;
   left: 0;
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   background-color: white;
   border-radius: 50%;
   transition: 0.3s;
-  transform: translate(${(screen: boolean) => (screen ? "20%" : "210%")}, -50%);
+  transform: translate(${({ screen }: any) => (screen ? "20%" : "250%")}, -50%);
 `;
 interface Props {
   circle: boolean;

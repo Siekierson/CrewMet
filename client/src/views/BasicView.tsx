@@ -9,17 +9,17 @@ const Wrapper = styled.div`
   transform: translate(-50%, -50%);
   z-index: 3;
   text-align: center;
+  width: 100%;
+  padding: 200px;
+  @media (max-width: 500px) {
+    padding: 40px;
+  }
 `;
 const Slogan = styled(motion.h1)`
-  padding: 30px;
-  font-size: 4rem;
+  font-size: 3.5rem;
   color: white;
   margin-bottom: 20px;
   width: 100%;
-  @media (max-width: 500px) {
-    font-size: 4.4rem;
-    padding: 0;
-  }
 `;
 const BtnMotion = styled(motion.div)``;
 const BasicView = () => {
@@ -47,7 +47,7 @@ const BasicView = () => {
             delay: 1,
           }}
         >
-          <ButtonLink path="/login" text="Create account/Log in" />
+          <ButtonLink path="/login" text="Create account / Log in" />
         </BtnMotion>
       </Wrapper>
     </>

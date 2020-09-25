@@ -8,10 +8,7 @@ import { Redirect } from "react-router-dom";
 import { LoggedContext } from "contexts/LoggedContext";
 import Valid from "components/atoms/Valid";
 const Head = styled.h1`
-  font-size: 2.8rem;
-  @media (max-width: 500px) {
-    font-size: 3rem;
-  }
+  font-size: 3rem;
 `;
 interface Inputs {
   username: string;
@@ -42,11 +39,11 @@ const Login = () => {
   };
   const vars = {
     hidden: {
-      x: window.innerWidth < 500 ? "60%" : "50%",
-      y: window.innerWidth < 500 ? "10%" : "20%",
+      x: window.innerWidth < 500 ? "-60%" : "10%",
+      y: window.innerWidth < 500 ? "-10%" : "10%",
     },
     visible: {
-      x: window.innerWidth < 500 ? "z0%" : "-100%",
+      x: window.innerWidth < 500 ? "-120%" : "-110%",
       transition: {
         type: "spring",
         stiffness: 160,
