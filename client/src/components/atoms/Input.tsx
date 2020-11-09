@@ -2,15 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const InputIn = styled.input`
-  padding: 5px 10px;
+  padding: 10px 20px;
   border-radius: 40px;
   background-color: transparent;
   border: 1px solid #fff;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   outline: none;
   display: block;
-  /* margin: ${(conv: boolean) => (conv ? "0" : "10px")}; */
-  margin-top:5px;
+  margin-top: 15px;
   transition: 0.5s;
   :focus {
     border: 1px solid orange;
@@ -27,7 +26,6 @@ interface Props {
   name?: string;
   conv?: boolean;
   required?: boolean;
-  // ref:
 }
 const Input = ({
   onChange,
@@ -43,7 +41,6 @@ const Input = ({
     conv,
     placeholder,
     type,
-    // ref,
   };
   return <InputIn {...all} />;
 };

@@ -5,7 +5,7 @@ import Login from "components/organisms/Login";
 import Register from "components/organisms/Register";
 
 const Wrapper = styled.div`
-  padding-top: 100px;
+  /* padding-top: -50px; */
 `;
 
 const LogView = () => {

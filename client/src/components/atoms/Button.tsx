@@ -1,12 +1,11 @@
 import React, { ReactNode } from "react";
 import styled from "styled-components";
-
 export const ButtonIn = styled.button`
-  padding: 7px 15px;
-  font-size: 1.5rem;
+  padding: 14px 35px;
+  font-size: 2.8rem;
   border-radius: 45px;
   color: white;
-  border-color: white;
+  border: 1px solid white;
   transition: 0.5s;
   background-color: transparent;
   outline: none;

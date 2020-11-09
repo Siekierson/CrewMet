@@ -9,9 +9,10 @@ import HomeView from "views/HomeView";
 import CreateCrewView from "views/CreateCrewView";
 import CrewView from "views/CrewView";
 const Wrapper = styled.div`
-  margin-top: 100px;
+  margin-top: 50px;
   height: calc(100vh - 100px);
   width: 100%;
+  padding: 10px;
   overflow: hidden;
   @media (max-width: 500px) {
     margin-top: 50px;

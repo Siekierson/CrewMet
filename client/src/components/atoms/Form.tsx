@@ -14,7 +14,7 @@ const FormIn = styled(motion.form)`
 
   transform:translate(-50%,-50%);
 `;
-type Anime = {
+type Animation = {
   hidden: {
     x: string;
     y: string;
@@ -34,21 +34,11 @@ interface Props {
   animate?: string;
   initial?: string;
   create?: boolean;
-  // transitionboolean,
-  variants?: Anime;
+  variants?: Animation;
   scnd?: boolean;
   id?: string;
 }
 const Form = (prop: Props) => {
-  // const props = {
-  //   scnd,
-  //   animate,
-  //   initial,
-  //   // transition,
-  //   create,
-  //   variants,
-  //   onSubmit,
-  // };
   return <FormIn {...prop}>{prop.children}</FormIn>;
 };
 export default Form;

@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import { LoggedContext } from "contexts/LoggedContext";
 import Valid from "components/atoms/Valid";
 const Head = styled.h1`
-  font-size: 3rem;
+  font-size: 4.8rem;
 `;
 interface Inputs {
   username: string;
@@ -31,8 +31,11 @@ const Login = () => {
     e.preventDefault();
     e.target.reset();
     setWait(true);
-    const { username, password } = inputs;
-    await fetch(`/users/auth/${username}/${password}`)
+    await fetch(`/users/auth`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(inputs),
+    })
       .then((response) => response.json())
       .then((data) => (data ? isLogged(data) : setRdr(false)))
       .catch((err) => setRdr(false));
@@ -40,7 +43,7 @@ const Login = () => {
   const vars = {
     hidden: {
       x: window.innerWidth < 500 ? "-60%" : "10%",
-      y: window.innerWidth < 500 ? "-10%" : "10%",
+      y: window.innerWidth < 500 ? "-10%" : "0%",
     },
     visible: {
       x: window.innerWidth < 500 ? "-120%" : "-110%",

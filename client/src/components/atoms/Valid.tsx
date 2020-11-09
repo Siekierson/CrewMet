@@ -2,7 +2,7 @@ import React, { ReactNode } from "react";
 import styled from "styled-components";
 
 const SValid = styled.h2`
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: ${({ scnd }: any) => (scnd ? "green" : "red")};
 `;
 interface Props {

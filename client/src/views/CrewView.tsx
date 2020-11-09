@@ -13,7 +13,7 @@ import {
   Desc,
   Main,
   StyledSwitch,
-} from "./styled/styledCrewView.js";
+} from "./styled/styledCrewView";
 import Switch from "components/atoms/Switch";
 import Conversation from "./crewViews/Conversation";
 import Meetings from "./crewViews/Meetings";

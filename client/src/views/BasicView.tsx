@@ -16,9 +16,9 @@ const Wrapper = styled.div`
   }
 `;
 const Slogan = styled(motion.h1)`
-  font-size: 3.5rem;
+  font-size: 6rem;
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   width: 100%;
 `;
 const BtnMotion = styled(motion.div)``;

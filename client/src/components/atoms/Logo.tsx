@@ -2,13 +2,10 @@ import React from "react";
 import styled from "styled-components";
 const Log = styled.h1`
   font-family: "Permanent Marker", sans-serif;
-  font-size: 2.5rem;
+  font-size: 4rem;
   text-align: center;
   line-height: 100%;
   color: ${(color: string) => color};
-  /* @media (max-width: 500px) {
-    font-size: 3rem;
-  } */
 `;
 type clr = {
   color: string;

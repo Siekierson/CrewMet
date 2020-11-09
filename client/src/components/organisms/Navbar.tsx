@@ -4,15 +4,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 const Wrapper = styled.nav`
   width: 100vw;
-  /* height: 100px; */
   position: fixed;
   top: 0;
   left: 0;
-  padding: 15px 30px;
-  border-bottom: 3px solid orange;
-  @media (max-width: 500px) {
-    /* height: 60px; */
-  }
+  padding: 20px 40px;
+  border-bottom: 2px solid orange;
 `;
 const Navbar = () => {
   return (
