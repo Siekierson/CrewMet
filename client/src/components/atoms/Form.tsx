@@ -10,9 +10,7 @@ const FormIn = styled(motion.form)`
     css`
       top: 40%;
       left: 60%;
-    `}
-
-  transform:translate(-50%,-50%);
+    `}transform:translate(-50%,-50%);
 `;
 type Animation = {
   hidden: {

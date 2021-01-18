@@ -7,6 +7,7 @@ import Form from "components/atoms/Form";
 import { Redirect } from "react-router-dom";
 import { LoggedContext } from "contexts/LoggedContext";
 import Valid from "components/atoms/Valid";
+import { logVariant } from "framerVariants/login";
 const Head = styled.h1`
   font-size: 4.8rem;
 `;
@@ -40,20 +41,7 @@ const Login = () => {
       .then((data) => (data ? isLogged(data) : setRdr(false)))
       .catch((err) => setRdr(false));
   };
-  const vars = {
-    hidden: {
-      x: window.innerWidth < 500 ? "-60%" : "10%",
-      y: window.innerWidth < 500 ? "-10%" : "0%",
-    },
-    visible: {
-      x: window.innerWidth < 500 ? "-120%" : "-110%",
-      transition: {
-        type: "spring",
-        stiffness: 160,
-        damping: 10,
-      },
-    },
-  };
+
   const slg = (): void => setLogData(ls);
   const pswd = "password";
   useEffect(() => {
@@ -61,7 +49,12 @@ const Login = () => {
     setLs(newls);
   }, []);
   return (
-    <Form variants={vars} initial="hidden" animate="visible" onSubmit={submit}>
+    <Form
+      variants={logVariant}
+      initial="hidden"
+      animate="visible"
+      onSubmit={submit}
+    >
       {rdr && <Redirect to="/home" />}
       <Head>Log In</Head>
       {rdr === false && <Valid>Invalid fields or user is not exist</Valid>}

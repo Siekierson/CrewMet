@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import ButtonLink from "components/molecues/ButtonLink";
 import SearchGroup from "components/molecues/SearchGroup";
-import CrewBar from "components/organisms/CrewBar";
+import CrewBar from "components/molecues/CrewBar";
 import { LoggedContext } from "contexts/LoggedContext";
 import DefWrapper from "components/atoms/DefWrapper";
 const HomeView = () => {

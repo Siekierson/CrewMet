@@ -1,20 +1,41 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import Switch from "components/atoms/Switch";
+import LogingForm from "components/organisms/LogingForm";
 import Login from "components/organisms/Login";
 import Register from "components/organisms/Register";
+import { logVariant, regVariant } from "framerVariants/login";
+import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
+const Wrapper = styled(motion.div)`
+  position: absolute;
+  height: 50vh;
+  width: 40vw;
+  ${(scnd: boolean) =>
+    scnd &&
+    css`
+      top: 40%;
+      left: 60%;
+    `}
 
-const Wrapper = styled.div`
-  /* padding-top: -50px; */
+  transform:translate(-50%,-50%);
 `;
 
 const LogView = () => {
   const [logReg, setLogReg] = useState(true);
   return (
-    <Wrapper>
+    <>
       <Switch circle={logReg} setCircle={() => setLogReg(!logReg)} />
-      {logReg ? <Login /> : <Register toLog={setLogReg} />}
-    </Wrapper>
+      {/* {logReg ? <Login /> : <Register toLog={setLogReg} />} */}
+      {logReg ? (
+        <Wrapper variants={logVariant} initial="hidden" animate="visible">
+          <LogingForm toLog={setLogReg} variant={logVariant} type={true} />
+        </Wrapper>
+      ) : (
+        <Wrapper variants={regVariant} initial="hidden" animate="visible">
+          <LogingForm toLog={setLogReg} variant={regVariant} type={false} />
+        </Wrapper>
+      )}
+    </>
   );
 };
 export default LogView;

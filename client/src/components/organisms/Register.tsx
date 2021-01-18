@@ -4,6 +4,7 @@ import Button from "components/atoms/Button";
 import Input from "components/atoms/Input";
 import Form from "components/atoms/Form";
 import Valid from "components/atoms/Valid";
+import { regVariant } from "framerVariants/login";
 const Head = styled.h1`
   font-size: 4.8rem;
 `;
@@ -13,23 +14,9 @@ const Register = ({ toLog }: any) => {
   const [valid, setValid] = useState(false);
   const change = (e: any) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
-  const vars = {
-    hidden: {
-      x: window.innerWidth < 500 ? "-130%" : "-100%",
-      y: window.innerWidth < 500 ? "-10%" : "0%",
-    },
-    visible: {
-      x: window.innerWidth < 500 ? "-60%" : "-10%",
-      transition: {
-        type: "spring",
-        stiffness: 160,
-        damping: 10,
-      },
-    },
-  };
   return (
     <Form
-      variants={vars}
+      variants={regVariant}
       initial="hidden"
       animate="visible"
       onSubmit={async (e: any) => {
