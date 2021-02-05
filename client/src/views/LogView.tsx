@@ -4,20 +4,14 @@ import LogingForm from "components/organisms/LogingForm";
 import Login from "components/organisms/Login";
 import Register from "components/organisms/Register";
 import { logVariant, regVariant } from "framerVariants/login";
-import styled, { css } from "styled-components";
-import { motion } from "framer-motion";
-const Wrapper = styled(motion.div)`
+import styled from "styled-components";
+const Wrapper = styled.div`
   position: absolute;
   height: 50vh;
   width: 40vw;
-  ${(scnd: boolean) =>
-    scnd &&
-    css`
-      top: 40%;
-      left: 60%;
-    `}
-
-  transform:translate(-50%,-50%);
+  top: 60%;
+  left: 60%;
+  transform: translate(-50%, -50%);
 `;
 
 const LogView = () => {
@@ -25,16 +19,13 @@ const LogView = () => {
   return (
     <>
       <Switch circle={logReg} setCircle={() => setLogReg(!logReg)} />
-      {/* {logReg ? <Login /> : <Register toLog={setLogReg} />} */}
-      {logReg ? (
-        <Wrapper variants={logVariant} initial="hidden" animate="visible">
-          <LogingForm toLog={setLogReg} variant={logVariant} type={true} />
-        </Wrapper>
-      ) : (
-        <Wrapper variants={regVariant} initial="hidden" animate="visible">
-          <LogingForm toLog={setLogReg} variant={regVariant} type={false} />
-        </Wrapper>
-      )}
+      <Wrapper>
+        {logReg ? (
+          <LogingForm variant={logVariant} toLog={setLogReg} type={true} />
+        ) : (
+          <LogingForm variant={logVariant} toLog={setLogReg} type={false} />
+        )}
+      </Wrapper>
     </>
   );
 };

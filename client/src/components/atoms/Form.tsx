@@ -8,9 +8,10 @@ const FormIn = styled(motion.form)`
   ${(scnd: boolean) =>
     scnd &&
     css`
-      top: 40%;
-      left: 60%;
-    `}transform:translate(-50%,-50%);
+      top: 10%;
+      left: 120%;
+    `}
+  transform:translate(-50%,-50%);
 `;
 type Animation = {
   hidden: {
@@ -33,8 +34,9 @@ interface Props {
   initial?: string;
   create?: boolean;
   variants?: Animation;
-  scnd?: boolean;
   id?: string;
+  auth?: boolean;
+  scnd?: boolean;
 }
 const Form = (prop: Props) => {
   return <FormIn {...prop}>{prop.children}</FormIn>;

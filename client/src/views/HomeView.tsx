@@ -7,7 +7,7 @@ import DefWrapper from "components/atoms/DefWrapper";
 const HomeView = () => {
   const { setLogData }: any = useContext(LoggedContext);
   const logOut = () => {
-    localStorage.clear();
+    window.localStorage.removeItem("logData");
     setLogData(false);
   };
   return (

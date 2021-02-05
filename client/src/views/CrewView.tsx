@@ -93,7 +93,7 @@ const CrewView = () => {
             )}
           </>
         ) : (
-          <Form scnd onSubmit={submit}>
+          <Form onSubmit={submit}>
             {valid && <Valid>Invalid password</Valid>}
             <Desc>You must enter a password, to see group</Desc>
             <Input type="password" placeholder="password" onChange={change} />

@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { ButtonIn } from "../atoms/Button";
+import Button from "../atoms/Button";
 interface Props {
   text: string;
   path: string;
@@ -9,11 +9,11 @@ interface Props {
 }
 const ButtonLink = ({ text, onClick, path, children }: Props) => {
   return (
-    <Link onClick={() => onClick} to={path}>
-      <ButtonIn>
+    <Link to={path}>
+      <Button onClick={onClick}>
         {text}
         {children && children}
-      </ButtonIn>
+      </Button>
     </Link>
   );
 };

@@ -36,7 +36,9 @@ const LogingForm = ({ toLog, variant, type }: Props) => {
   });
   const [rdr, setRdr] = useState<null | boolean>(null);
   const [valid, setValid] = useState(false);
-  const [localstorage, setLocalstorage] = useState({ username: null });
+  const [localstorage, setLocalstorage] = useState({
+    username: null,
+  });
   const change = (e: any): void =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   const isLogged = (data: object) => {
@@ -111,7 +113,7 @@ const LogingForm = ({ toLog, variant, type }: Props) => {
         />
       )}
       <Button type="submit">{type ? "Log In" : "Create account"}</Button>
-      {localstorage && (
+      {localstorage.username && (
         <ButtonLink
           onClick={() => slg()}
           path="/home"

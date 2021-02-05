@@ -24,7 +24,7 @@ const CrewBar = () => {
   }, [logData.groups]);
   return (
     <Wrapper>
-      {logData
+      {logData.groups
         ? logData.groups.map((item: string, index: number) => (
             <Item key={item} to={`/crews/${item}`}>
               <Photo src={photos[index]} />
