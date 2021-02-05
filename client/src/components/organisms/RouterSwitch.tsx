@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Switch, Route } from "react-router-dom";
 import { Redirect } from "react-router";
-import { LoggedContext } from "contexts/LoggedContext.js";
+import { LoggedContext } from "contexts/LoggedContext";
 import BasicView from "views/BasicView";
 import LogView from "views/LogView";
 import HomeView from "views/HomeView";
